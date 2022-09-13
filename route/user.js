@@ -6,13 +6,14 @@ const verify=require('../verify');
 Router.put('/:id',verify,async(req,res)=>
 {
     console.log("I am in updata");
-    if(req.user.email===req.params.email)
+    if(req.user.id===req.params.id)
     {
         if(req.body.password)
         {
              req.body.password=crypto.AES.encrypt(req.body.password,"secret").toString();
-        }try {
-            const updataUser=await User.findByIdAndUpdate(req,params.id,{$set:req.body},{new:true});
+        }
+        try {
+            const updataUser=await User.findByIdAndUpdate(req.params.id,{$set:req.body},{new:true});
             if(updataUser)
             {
                 const {password,...info}=updataUser._doc;

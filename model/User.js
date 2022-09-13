@@ -19,6 +19,10 @@ const userSchema=mongoose.Schema({
         required:true,
         
     },
+    hobbie:
+    {
+        type:String,
+    },
 })
 
 module.exports=mongoose.model('user',userSchema);

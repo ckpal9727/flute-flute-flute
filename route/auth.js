@@ -9,10 +9,10 @@ const Router=require('express').Router();
 
 Router.post('/register',async(req,res)=>
 {
-   const {name,email,password}=req.body;
+   const {name,email,password,hobbie}=req.body;
    
    const encPassword=crypto.AES.encrypt(password,"secret").toString();
-   const user=new User({name:name,email:email,password:encPassword}) ;
+   const user=new User({name:name,email:email,password:encPassword,hobbie:hobbie}) ;
    try {
     user.save();
     res.json({user});
@@ -32,7 +32,7 @@ Router.post('/login',async(req,res)=>
     }else{
         const byte=crypto.AES.decrypt(existUser.password,"secret");
         const originalPassword=byte.toString(crypto.enc.Utf8);
-        if(password!==originalPassword){
+        if(originalPassword!==password){
             res.send("You Password is wrong");
         }else{
             const accessToken=jwt.sign({id:existUser._id,email:existUser.email},"secret",{expiresIn:"5d"});
