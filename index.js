@@ -1,5 +1,6 @@
 const express=require('express');
 const app=express();
+const port=process.env.PORT || 2000;
 
 const mongoose=require('./connection');
 const authUser=require('./route/auth');
@@ -12,6 +13,6 @@ app.use(userUser);
 
 
 
-app.listen(2000,()=>{
-    console.log("the server is running on the 2000");
+app.listen(port,()=>{
+    console.log(`the server is running on the ${port}`);
 })
