@@ -27,9 +27,14 @@ Router.put('/:id',verify,async(req,res)=>
         res.send("Not gone in updata");
     }
 })
-Router.get('/',(req,res)=>
+Router.get('/',async(req,res)=>
 {
-    res.send("this is from the user");
+   try {
+    const data=await User.find()
+    res.json({data});
+   } catch (error) {
+    console.log(error);
+   }
 })
 
 
