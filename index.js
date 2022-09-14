@@ -8,9 +8,9 @@ const userUser=require('./route/user');
 const computerRoute=require('./route/computer');
 
 app.use(express.json());
-app.use(authUser);
-app.use(userUser);
-app.use(computerRoute);
+app.use('/api/user/',authUser);
+app.use('/api/updata/',userUser);
+app.use('/api/computer/',computerRoute);
 
 
 
