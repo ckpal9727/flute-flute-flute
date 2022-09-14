@@ -19,10 +19,11 @@ const userSchema=mongoose.Schema({
         required:true,
         
     },
-    hobbie:
-    {
-        type:String,
-    },
-})
+    isLabAssistant:{
+        type:Boolean,
+        default:false
+    }
+   
+},{timestamps:true})
 
 module.exports=mongoose.model('user',userSchema);

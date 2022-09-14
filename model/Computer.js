@@ -1,7 +1,7 @@
 const mongoose=require('mongoose');
 
 const computerSchema=mongoose.Schema({
-    computer_id:
+    computerId:
     {
         type:String,
         required:true,

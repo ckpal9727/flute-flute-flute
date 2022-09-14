@@ -9,13 +9,13 @@ const Router=require('express').Router();
 
 Router.post('/register',async(req,res)=>
 {
-   const {name,email,password,hobbie}=req.body;
+   const {name,email,password,isLabAssistant}=req.body;
    
    const encPassword=crypto.AES.encrypt(password,"secret").toString();
-   const user=new User({name:name,email:email,password:encPassword,hobbie:hobbie}) ;
+   const user=new User({name:name,email:email,password:encPassword,isLabAssistant:isLabAssistant}) ;
    try {
-    user.save();
-    res.json({user});
+   const registerUser=await user.save();
+    res.json({registerUser});
    } catch (error) {
     console.log(error);
     
@@ -35,7 +35,7 @@ Router.post('/login',async(req,res)=>
         if(originalPassword!==password){
             res.send("You Password is wrong");
         }else{
-            const accessToken=jwt.sign({id:existUser._id,email:existUser.email},"secret",{expiresIn:"5d"});
+            const accessToken=jwt.sign({id:existUser._id,email:existUser.email,isLabAssistant:existUser.isLabAssistant},"secret",{expiresIn:"5d"});
             const {password,...info}=existUser._doc;
             res.json({info,accessToken});
         }

@@ -6,11 +6,14 @@ const paramsUrl={
     useUnifiedTopology:true,
 }
 
-function mongoDb()
+async function mongoDb ()
 {
     try {
-        mongoose.connect(url,paramsUrl);
+       const connection=await mongoose.connect(url,paramsUrl);
+       if(connection)
+       {
         console.log("connection successfull");
+       }
     } catch (error) {
         console.log(error)
     }

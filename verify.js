@@ -10,7 +10,7 @@ function verify(req,res,next)
         const token=authToken.split(" ")[1];
         jwt.verify(token,"secret",(err,User)=>
         {
-            if(err) res.send("Here is error");
+            if(err) res.send("Token is invalid ");
             req.user=User;
             next();
         })

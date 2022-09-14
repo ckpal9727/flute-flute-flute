@@ -32,7 +32,10 @@ Router.get('/',async(req,res)=>
 {
    try {
     const data=await User.find()
+    if(data){
+        //deletMany function is use for delete all record
     res.json({data});
+    }
    } catch (error) {
     console.log(error);
    }
